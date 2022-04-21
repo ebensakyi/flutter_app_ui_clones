@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -15,8 +15,8 @@ class _HomePageState extends State<HomePage> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Icon(Icons.ac_unit_rounded),
-            Icon(Icons.add_moderator_outlined),
+           getSmallImageAsset("assets/images/profile.png", 24.0),
+            FaIcon(FontAwesomeIcons.twitter),
             Icon(Icons.favorite_border_outlined),
           ],
         ),
@@ -25,3 +25,32 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+
+
+
+Widget getImageAsset(path, size) {
+    AssetImage assetImage = AssetImage(path);
+    Image image = Image(
+      image: assetImage,
+      width: size,
+      height: size,
+    );
+    return Container(
+      child: image,
+      margin: EdgeInsets.all(_minimumPadding * 1),
+    );
+  }
+
+  Widget getSmallImageAsset(path, size) {
+    AssetImage assetImage = AssetImage(path);
+    Image image = Image(
+      image: assetImage,
+      width: size,
+      height: size,
+    );
+    return Container(
+      child: image,
+      margin: const EdgeInsets.fromLTRB(20.0, 10.0, 15.0, 10.0),
+    );
+  }
+
