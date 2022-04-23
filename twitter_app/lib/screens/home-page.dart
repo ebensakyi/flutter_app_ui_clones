@@ -107,10 +107,14 @@ class _HomePageState extends State<HomePage> {
                 icon: Icon(Icons.more_vert),
                 color: Colors.black38,
               ),
-              subtitle: Text(
-                'Rice does not need to be covered by the grain.',
-                style: TextStyle(
-                    color: Colors.black87, fontWeight: FontWeight.w300),
+              subtitle: Container(
+                color: Colors.grey.shade200,
+                child: Text(
+                  '''Lorem ipsum dolor sit amet, consur adipiscing elit. Quisque nisl eros, 
+pulvinar facilisis justo mollis, auctor consequat urna. ''',
+                  style: TextStyle(
+                      color: Colors.black87, fontWeight: FontWeight.w300),
+                ),
               ),
               selected: true,
             );
