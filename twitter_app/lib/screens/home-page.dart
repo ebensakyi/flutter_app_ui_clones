@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -14,76 +16,114 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _scaffoldKey,
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: Colors.white,
-        elevation: 1,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            GestureDetector(
-              onTap: () {
-                _scaffoldKey.currentState?.openDrawer();
-                debugPrint("onTap: ");
-              },
-              child: getRoundImage("assets/images/profile.png", 34.0),
-            ),
-            const FaIcon(
-              FontAwesomeIcons.twitter,
-              color: Colors.blue,
-            ),
-            //FaIcon(FontAwesomeIcons.star)
-            getImageAsset("assets/images/clean.png", 34.0)
-          ],
+        key: _scaffoldKey,
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          backgroundColor: Colors.white,
+          elevation: 1,
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              GestureDetector(
+                onTap: () {
+                  _scaffoldKey.currentState?.openDrawer();
+                  debugPrint("onTap: ");
+                },
+                child: getRoundImage("assets/images/profile.png", 34.0),
+              ),
+              const FaIcon(
+                FontAwesomeIcons.twitter,
+                color: Colors.blue,
+              ),
+              //FaIcon(FontAwesomeIcons.star)
+              getImageAsset("assets/images/clean.png", 34.0)
+            ],
+          ),
+          centerTitle: true,
         ),
-        centerTitle: true,
-      ),
-      bottomNavigationBar: bottomNavigator(),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            // const DrawerHeader(
-            //   child: Text(
-            //     'Side menu',
-            //     style: TextStyle(color: Colors.white, fontSize: 25),
-            //   ),
-            //   decoration: BoxDecoration(
-            //       color: Colors.green,
-            //       image: DecorationImage(
-            //           fit: BoxFit.fill,
-            //           image: AssetImage('assets/images/cover.jpg'))),
-            // ),
-            ListTile(
-              leading: const Icon(Icons.input),
-              title: const Text('Welcome'),
-              onTap: () => {},
-            ),
-            ListTile(
-              leading: const Icon(Icons.verified_user),
-              title: const Text('Profile'),
-              onTap: () => {Navigator.of(context).pop()},
-            ),
-            ListTile(
-              leading: const Icon(Icons.settings),
-              title: const Text('Settings'),
-              onTap: () => {Navigator.of(context).pop()},
-            ),
-            ListTile(
-              leading: const Icon(Icons.border_color),
-              title: const Text('Feedback'),
-              onTap: () => {Navigator.of(context).pop()},
-            ),
-            ListTile(
-              leading: const Icon(Icons.exit_to_app),
-              title: const Text('Logout'),
-              onTap: () => {Navigator.of(context).pop()},
-            ),
-          ],
+        bottomNavigationBar: bottomNavigator(),
+        drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+              // const DrawerHeader(
+              //   child: Text(
+              //     'Side menu',
+              //     style: TextStyle(color: Colors.white, fontSize: 25),
+              //   ),
+              //   decoration: BoxDecoration(
+              //       color: Colors.green,
+              //       image: DecorationImage(
+              //           fit: BoxFit.fill,
+              //           image: AssetImage('assets/images/cover.jpg'))),
+              // ),
+              ListTile(
+                leading: const Icon(Icons.input),
+                title: const Text('Welcome'),
+                onTap: () => {},
+              ),
+              ListTile(
+                leading: const Icon(Icons.verified_user),
+                title: const Text('Profile'),
+                onTap: () => {Navigator.of(context).pop()},
+              ),
+              ListTile(
+                leading: const Icon(Icons.settings),
+                title: const Text('Settings'),
+                onTap: () => {Navigator.of(context).pop()},
+              ),
+              ListTile(
+                leading: const Icon(Icons.border_color),
+                title: const Text('Feedback'),
+                onTap: () => {Navigator.of(context).pop()},
+              ),
+              ListTile(
+                leading: const Icon(Icons.exit_to_app),
+                title: const Text('Logout'),
+                onTap: () => {Navigator.of(context).pop()},
+              ),
+            ],
+          ),
         ),
-      ),
-    );
+        body: ListView.separated(
+          separatorBuilder: ((context, index) => const Divider(
+                color: Colors.black38,
+              )),
+          itemCount: 200,
+          itemBuilder: (context, index) {
+            return ListTile(
+              leading: CircleAvatar(
+                backgroundImage: AssetImage("assets/images/profile.png"),
+              ),
+              title: Text(
+                'Timeless Praise',
+                style: TextStyle(
+                    color: Colors.black87, fontWeight: FontWeight.w500),
+              ),
+              trailing: IconButton(
+                onPressed: () {
+                  debugPrint("");
+                },
+                icon: Icon(Icons.more_vert),
+                color: Colors.black38,
+              ),
+              subtitle: Text(
+                'Rice does not need to be covered by the grain.',
+                style: TextStyle(
+                    color: Colors.black87, fontWeight: FontWeight.w300),
+              ),
+              selected: true,
+            );
+          },
+          // children: const [
+          //   ListTile(
+          //     leading: CircleAvatar(
+          //       backgroundImage: AssetImage("assets/images/clean.png"),
+          //     ),
+          //   ),
+          //   divider:  true,
+          // ],
+        ));
   }
 }
 
@@ -91,15 +131,15 @@ Widget bottomNavigator() {
   return BottomNavigationBar(
     items: const [
       BottomNavigationBarItem(
-        icon: Icon(
-          Icons.home,
+        icon: FaIcon(
+          FontAwesomeIcons.house,
           color: Colors.black87,
         ),
         label: '',
       ),
       BottomNavigationBarItem(
-        icon: Icon(
-          Icons.search,
+        icon: FaIcon(
+          FontAwesomeIcons.magnifyingGlass,
           color: Colors.black87,
         ),
         label: '',
@@ -112,8 +152,8 @@ Widget bottomNavigator() {
         label: '',
       ),
       BottomNavigationBarItem(
-        icon: Icon(
-          Icons.notifications_none_outlined,
+        icon: FaIcon(
+          FontAwesomeIcons.bell,
           color: Colors.black87,
         ),
         label: '',
