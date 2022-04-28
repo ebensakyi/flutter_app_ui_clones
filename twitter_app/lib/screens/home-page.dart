@@ -10,8 +10,16 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
+const TextStyle _textStyle = TextStyle(
+    fontSize: 40.0,
+    fontWeight: FontWeight.bold,
+    letterSpacing: 2,
+    fontStyle: FontStyle.italic);
+
 class _HomePageState extends State<HomePage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  List<Widget> pages = const [Text("Home", style: _textStyle)];
 
   @override
   Widget build(BuildContext context) {
