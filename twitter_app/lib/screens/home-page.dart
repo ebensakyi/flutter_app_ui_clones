@@ -19,7 +19,13 @@ const TextStyle _textStyle = TextStyle(
 class _HomePageState extends State<HomePage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  List<Widget> pages = const [Text("Home", style: _textStyle)];
+  List<Widget> pages = const [
+    Text("Home", style: _textStyle),
+    Text("Search", style: _textStyle),
+    Text("Spaces", style: _textStyle),
+    Text("Alerts", style: _textStyle),
+    Text("Chat", style: _textStyle)
+  ];
 
   @override
   Widget build(BuildContext context) {
