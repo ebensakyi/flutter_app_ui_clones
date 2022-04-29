@@ -56,32 +56,7 @@ class _HomePageState extends State<HomePage> {
           ),
           centerTitle: true,
         ),
-        bottomNavigationBar: NavigationBar(
-          selectedIndex: _currentIndex,
-          onDestinationSelected: (int newIndex) {
-            setState(() {
-              _currentIndex = newIndex;
-            });
-          },
-          destinations: [
-            NavigationDestination(
-                selectedIcon: Icon(Icons.home),
-                icon: Icon(Icons.home),
-                label: "Home"),
-            NavigationDestination(
-                selectedIcon: Icon(Icons.search_outlined),
-                icon: Icon(Icons.search),
-                label: "Search"),
-            NavigationDestination(
-                selectedIcon: Icon(Icons.mic_outlined),
-                icon: Icon(Icons.mic),
-                label: "Spaces"),
-            NavigationDestination(
-                selectedIcon: Icon(Icons.notifications_on),
-                icon: Icon(Icons.notifications_on),
-                label: "Notification")
-          ],
-        ),
+        bottomNavigationBar: bottomNavigator(),
         drawer: Drawer(
           child: ListView(
             padding: EdgeInsets.zero,
@@ -169,121 +144,131 @@ pulvinar facilisis justo mollis, auctor consequat urna. ''',
           // ],
         ));
   }
-}
 
-// Widget bottomNavigator() {
-//   return NavigationBar(
-//     selectedIndex: _currentIndex,
-//     onDestinationSelected: (int newIndex) {
-//       setState(() {
-//         _currentIndex = newIndex;
-//       });
-//     },
-//     destinations: [
-//       NavigationDestination(
-//           selectedIcon: Icon(Icons.home),
-//           icon: Icon(Icons.home),
-//           label: "Home"),
-//       NavigationDestination(
-//           selectedIcon: Icon(Icons.search_outlined),
-//           icon: Icon(Icons.search),
-//           label: "Search"),
-//       NavigationDestination(
-//           selectedIcon: Icon(Icons.mic_outlined),
-//           icon: Icon(Icons.mic),
-//           label: "Spaces"),
-//       NavigationDestination(
-//           selectedIcon: Icon(Icons.notifications_on),
-//           icon: Icon(Icons.notifications_on),
-//           label: "Notification")
-//     ],
-//   );
-// }
+  Widget bottomNavigator() {
+    return NavigationBarTheme(
+      data: NavigationBarThemeData(
+        indicatorColor: Colors.white.withOpacity(0.5),
+        labelTextStyle: MaterialStateProperty.all(
+          TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+        ),
+      ),
+      child: NavigationBar(
+        selectedIndex: _currentIndex,
+        labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
+        backgroundColor: Colors.teal,
+        onDestinationSelected: (int newIndex) {
+          setState(() {
+            _currentIndex = newIndex;
+          });
+        },
+        destinations: [
+          NavigationDestination(
+              selectedIcon: Icon(Icons.home),
+              icon: Icon(Icons.home_outlined),
+              label: "Home"),
+          NavigationDestination(
+              selectedIcon: Icon(Icons.search_outlined),
+              icon: Icon(Icons.search),
+              label: "Search"),
+          NavigationDestination(
+              selectedIcon: Icon(Icons.mic_off_outlined),
+              icon: Icon(Icons.mic),
+              label: "Spaces"),
+          NavigationDestination(
+              selectedIcon: Icon(Icons.notifications_on),
+              icon: Icon(Icons.notifications_on),
+              label: "Notification")
+        ],
+      ),
+    );
+  }
 
-Widget bottomNavigator1() {
-  return BottomNavigationBar(
-    items: const [
-      BottomNavigationBarItem(
-        icon: FaIcon(
-          FontAwesomeIcons.house,
-          color: Colors.black87,
+  Widget bottomNavigator1() {
+    return BottomNavigationBar(
+      items: const [
+        BottomNavigationBarItem(
+          icon: FaIcon(
+            FontAwesomeIcons.house,
+            color: Colors.black87,
+          ),
+          label: '',
         ),
-        label: '',
-      ),
-      BottomNavigationBarItem(
-        icon: FaIcon(
-          FontAwesomeIcons.magnifyingGlass,
-          color: Colors.black87,
+        BottomNavigationBarItem(
+          icon: FaIcon(
+            FontAwesomeIcons.magnifyingGlass,
+            color: Colors.black87,
+          ),
+          label: '',
         ),
-        label: '',
-      ),
-      BottomNavigationBarItem(
-        icon: FaIcon(
-          FontAwesomeIcons.microphoneLines,
-          color: Colors.black87,
+        BottomNavigationBarItem(
+          icon: FaIcon(
+            FontAwesomeIcons.microphoneLines,
+            color: Colors.black87,
+          ),
+          label: '',
         ),
-        label: '',
-      ),
-      BottomNavigationBarItem(
-        icon: FaIcon(
-          FontAwesomeIcons.bell,
-          color: Colors.black87,
+        BottomNavigationBarItem(
+          icon: FaIcon(
+            FontAwesomeIcons.bell,
+            color: Colors.black87,
+          ),
+          label: '',
         ),
-        label: '',
-      ),
-      BottomNavigationBarItem(
-        icon: Icon(
-          Icons.email_outlined,
-          color: Colors.black87,
+        BottomNavigationBarItem(
+          icon: Icon(
+            Icons.email_outlined,
+            color: Colors.black87,
+          ),
+          label: '',
         ),
-        label: '',
-      ),
-    ],
-  );
-}
+      ],
+    );
+  }
 
-Widget getImageAsset(path, size) {
-  AssetImage assetImage = AssetImage(path);
-  Image image = Image(
+  Widget getImageAsset(path, size) {
+    AssetImage assetImage = AssetImage(path);
+    Image image = Image(
+        image: assetImage,
+        width: size,
+        height: size,
+        color: Colors.grey.shade800);
+    var _minimumPadding = 16;
+    return Container(
+      child: image,
+      margin: EdgeInsets.all(_minimumPadding * 1),
+    );
+  }
+
+  Widget getSmallImageAsset(path, size) {
+    AssetImage assetImage = AssetImage(path);
+    Image image = Image(
       image: assetImage,
       width: size,
       height: size,
-      color: Colors.grey.shade800);
-  var _minimumPadding = 16;
-  return Container(
-    child: image,
-    margin: EdgeInsets.all(_minimumPadding * 1),
-  );
-}
+    );
+    return Container(
+      child: image,
+      margin: const EdgeInsets.fromLTRB(20.0, 10.0, 15.0, 10.0),
+    );
+  }
 
-Widget getSmallImageAsset(path, size) {
-  AssetImage assetImage = AssetImage(path);
-  Image image = Image(
-    image: assetImage,
-    width: size,
-    height: size,
-  );
-  return Container(
-    child: image,
-    margin: const EdgeInsets.fromLTRB(20.0, 10.0, 15.0, 10.0),
-  );
-}
+  Widget getRoundImage(path, size) {
+    AssetImage assetImage = AssetImage(path);
+    Image image = Image(
+      image: assetImage,
+      width: size,
+      height: size,
+    );
 
-Widget getRoundImage(path, size) {
-  AssetImage assetImage = AssetImage(path);
-  Image image = Image(
-    image: assetImage,
-    width: size,
-    height: size,
-  );
-
-  return Container(
-    child: image,
-    margin: const EdgeInsets.fromLTRB(20.0, 10.0, 15.0, 10.0),
-    decoration: BoxDecoration(
-        border: Border.all(
-          color: Colors.white,
-        ),
-        borderRadius: const BorderRadius.all(Radius.circular(20.0))),
-  );
+    return Container(
+      child: image,
+      margin: const EdgeInsets.fromLTRB(20.0, 10.0, 15.0, 10.0),
+      decoration: BoxDecoration(
+          border: Border.all(
+            color: Colors.white,
+          ),
+          borderRadius: const BorderRadius.all(Radius.circular(20.0))),
+    );
+  }
 }
