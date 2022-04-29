@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -18,6 +18,7 @@ const TextStyle _textStyle = TextStyle(
 
 class _HomePageState extends State<HomePage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  int _currentIndex = 0;
 
   List<Widget> pages = const [
     Text("Home", style: _textStyle),
@@ -55,7 +56,32 @@ class _HomePageState extends State<HomePage> {
           ),
           centerTitle: true,
         ),
-        bottomNavigationBar: bottomNavigator(),
+        bottomNavigationBar: NavigationBar(
+          selectedIndex: _currentIndex,
+          onDestinationSelected: (int newIndex) {
+            setState(() {
+              _currentIndex = newIndex;
+            });
+          },
+          destinations: [
+            NavigationDestination(
+                selectedIcon: Icon(Icons.home),
+                icon: Icon(Icons.home),
+                label: "Home"),
+            NavigationDestination(
+                selectedIcon: Icon(Icons.search_outlined),
+                icon: Icon(Icons.search),
+                label: "Search"),
+            NavigationDestination(
+                selectedIcon: Icon(Icons.mic_outlined),
+                icon: Icon(Icons.mic),
+                label: "Spaces"),
+            NavigationDestination(
+                selectedIcon: Icon(Icons.notifications_on),
+                icon: Icon(Icons.notifications_on),
+                label: "Notification")
+          ],
+        ),
         drawer: Drawer(
           child: ListView(
             padding: EdgeInsets.zero,
@@ -145,7 +171,36 @@ pulvinar facilisis justo mollis, auctor consequat urna. ''',
   }
 }
 
-Widget bottomNavigator() {
+// Widget bottomNavigator() {
+//   return NavigationBar(
+//     selectedIndex: _currentIndex,
+//     onDestinationSelected: (int newIndex) {
+//       setState(() {
+//         _currentIndex = newIndex;
+//       });
+//     },
+//     destinations: [
+//       NavigationDestination(
+//           selectedIcon: Icon(Icons.home),
+//           icon: Icon(Icons.home),
+//           label: "Home"),
+//       NavigationDestination(
+//           selectedIcon: Icon(Icons.search_outlined),
+//           icon: Icon(Icons.search),
+//           label: "Search"),
+//       NavigationDestination(
+//           selectedIcon: Icon(Icons.mic_outlined),
+//           icon: Icon(Icons.mic),
+//           label: "Spaces"),
+//       NavigationDestination(
+//           selectedIcon: Icon(Icons.notifications_on),
+//           icon: Icon(Icons.notifications_on),
+//           label: "Notification")
+//     ],
+//   );
+// }
+
+Widget bottomNavigator1() {
   return BottomNavigationBar(
     items: const [
       BottomNavigationBarItem(
